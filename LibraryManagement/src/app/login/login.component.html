@@ -1,0 +1,42 @@
+<div class="login-div">  
+<div class="boder bg-secondary text-white w-50 p-3">
+    <form  #userForm="ngForm">
+     
+        <label>Name</label>
+        <input type="text" #username="ngModel" class="form-control" [class.is-invalid]="username.invalid && username.touched" name="username" [(ngModel)]="name" required> 
+        <small class="text-danger" [class.d-none]="username.valid || username.untouched">Name is required</small>
+        <br><br>
+
+        <label>password</label>
+          <input type="password" #password="ngModel" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control" required
+          [class.is-invalid]="password.invalid && password.touched"  name="password" [(ngModel)]="password1" >
+          <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</small>
+          <br><br>
+
+          <label>Role</label>
+          <input type="text" #role="ngModel" pattern="user|admin" class="form-control" required
+          [class.is-invalid]="role.invalid && role.touched"  name="role" [(ngModel)]="roleValue" >
+          <small class="text-danger" [class.d-none]="role.valid || role.untouched">Role is required</small>
+          <br><br>
+<!-- 
+           <select [(ngModel)]="role" name="role" >  
+            <option hidden>Choose role</option>  
+            <option *ngFor="let domain of role">{{domain}}</option>  
+        </select> 
+        {{role}} -->
+<!--         
+        <label for="role" >Select Role</label>
+        <select name="role" id="role"  [(ngModel)]="role">
+          <option value="admin" >Admin</option>
+          <option value="user" >User</option>
+
+
+        </select> -->
+        <br><br>
+
+
+    <button [disabled]="userForm.form.invalid"  (click)="dashBoard()">Login</button>
+</form>
+   </div>
+</div>
+

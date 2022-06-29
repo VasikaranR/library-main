@@ -1,0 +1,45 @@
+<div class="container">
+    <form [formGroup]="formvalid">
+        <div>
+            <label for="bookId"><b>BookID</b></label>
+            <div>
+                <input type="text"  id="bookId" name="bookId" formControlName="bookId" placeholder="bookId"><br> 
+            </div>
+        </div>
+       
+        <div>
+            <label for="bookname"><b>bookName</b></label>
+            <div>
+                <input type="text"  id="bookname" name="bookname" formControlName="bookname" placeholder="material"><br>  
+            </div>
+        </div>
+
+        <div>
+            <label for="category"><b>category</b></label>
+            <div>
+                <input type="text"  id="category" name="category" formControlName="category" placeholder="category"><br>  
+            </div>
+        </div>
+        <div>
+            <label for="author"><b>Author</b></label>
+            <div>
+                <input type="text"  id="author" name="author" formControlName="author" placeholder="author"><br>  
+            </div>
+        </div>
+       
+        <div class="mb-1">
+            <div class="btn-group" role="group">
+                <!-- <button class="btn btn-info" [routerLink]="['/user']">Back</button> -->
+                <!-- <button (click)="save()" [disabled]="formvalid.invalid" class="btn btn-primary" type="button">
+                    {{id==0 || id==null ?'Save':'Update'}}</button>
+                <button class="btn btn-secondary" (click)="resetValues()" type="button">Reset </button> -->
+                <button (click)="save()" class="btn btn-primary" type="button"> Save</button>   
+
+            </div>
+        </div>
+
+        <!-- <div >
+            {{userform.value |json}}
+        </div>   -->
+    </form>
+</div>

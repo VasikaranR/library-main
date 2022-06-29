@@ -1,0 +1,47 @@
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <p>DashBoard</p>
+    <button (click)="logout()" id="logout" class="btn  btn-danger">Logout</button>
+  </div>
+</nav>
+<table class="table mt-4">
+  <thead>
+      <tr>
+        <th scope="col">book Id</th>
+        <th scope="col">book Name</th>
+        <th scope="col">category</th>
+        <th scope="col">Author</th>
+        <th scope="col">Action</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList">
+        <td>{{user.bookId}}</td>
+        <td>{{user.bookname}}</td>
+        <td>{{user.category}}</td>
+        <td>{{user.author}}</td>
+       <p *ngIf="roleName=='user' else elsecase">
+        <td>
+            <button  (click)="view()" class="btn btn-info">View</button>&nbsp;
+            <button [routerLink]="['/buy',user.id]" class="btn btn-primary">Lend</button>
+        </td>
+      </p>
+      <ng-template #elsecase>
+        <td>
+        <!-- <button (click)="edit(user.id)" class="btn btn-warning">Edit</button>&nbsp; -->
+        <button class="btn btn-warning" [routerLink]="['/update-addbook',user.id]">Edit</button>&nbsp;
+        <button (click)="deleteBook(user.id)" class="btn btn-danger">Delete</button>&nbsp;
+      </td>
+      </ng-template>
+        
+
+    </tr>
+
+
+  </tbody>
+
+</table>
+<p *ngIf="roleName=='admin'">
+  <button (click)="add()" class="btn btn-primary">Add</button>&nbsp;
+</p>
+
