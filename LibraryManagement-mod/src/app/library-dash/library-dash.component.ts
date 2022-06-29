@@ -28,8 +28,11 @@ export class LibraryDashComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userList = this.userService.getUsers();
-    this.roleName=this.loginDataService.role
+    // this.userList = this.userService.getUsers();
+    this.userService.getUsers().subscribe((res)=>{
+      this.userList=res as User[];
+    })
+      this.roleName=this.loginDataService.role
     console.log(this.roleName);
       
   }
@@ -65,10 +68,10 @@ export class LibraryDashComponent implements OnInit {
   // }
   deleteBook(id:number){
     console.warn("remove id :"+id);
-    if (confirm("Are you sure would you like to delete the details?") == true) {
-      this.userService.removeUser(id);
-      this.userList = this.userService.getUsers();
-    } 
+    // if (confirm("Are you sure would you like to delete the details?") == true) {
+    //   this.userService.removeUser(id);
+    //   this.userList = this.userService.getUsers();
+    // } 
 }
   }
 

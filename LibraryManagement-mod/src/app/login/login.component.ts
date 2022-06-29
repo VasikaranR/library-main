@@ -23,6 +23,12 @@ export class LoginComponent implements OnInit {
      
   }
   
+  rolefunction(roleValue:string)
+  {
+    this.roleValue=roleValue
+    console.log(this.roleValue);
+    
+  }
   dashBoard(){
 
     this.loginDataService.getDetails(this.name,this.password1,this.roleValue).subscribe((res)=>{

@@ -17,7 +17,7 @@ const routes: Routes = [
  {path:'user',component:UserComponent},
  {path:'buy/:id',component:BuyComponent},
  {path:'addbook',component:AddBookComponent},
- {path:'update-addbook/:id',component:AddBookComponent},
+ {path:'update-addbook/:_id',component:AddBookComponent},
  {path:'home',component:HeaderComponent},
  {path:'**',component:LoginComponent}
 

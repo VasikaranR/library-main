@@ -28,7 +28,7 @@
         <input type="text" #bookAuthor="ngModel" class="form-control" [class.is-invalid]="bookAuthor.invalid && bookAuthor.touched" name="bookAuthor" [(ngModel)]="bookAuthorValue" required> 
         <small class="text-danger" [class.d-none]="bookAuthor.valid || bookAuthor.untouched">Name is required</small>
     </div>
-    <button [disabled]="date.form.invalid"  (click)="submit()" class="btn btn-primary">Submit</button>&nbsp;
+    <button [disabled]="date.form.invalid"  (click)="submit(date)" class="btn btn-primary">Submit</button>&nbsp;
 
      </form>
 </div>
