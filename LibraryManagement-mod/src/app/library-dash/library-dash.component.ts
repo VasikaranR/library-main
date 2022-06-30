@@ -66,12 +66,25 @@ export class LibraryDashComponent implements OnInit {
   //   });
 
   // }
-  deleteBook(id:number){
-    console.warn("remove id :"+id);
+  // deleteBook(id:number){
+    // console.warn("remove id :"+id);
     // if (confirm("Are you sure would you like to delete the details?") == true) {
     //   this.userService.removeUser(id);
     //   this.userList = this.userService.getUsers();
     // } 
+// }
+
+delete(_id:string){
+  if (confirm('Are you sure to delete this record ?') == true) {
+  this.userService.deleteUserId(_id).subscribe((res) => {
+    console.log(res);
+    
+  });
+  this.userService.getUsers().subscribe((res)=>{
+    this.userList=res as User[];
+    console.log(JSON.stringify(res));
+  });
+}
 }
   }
 

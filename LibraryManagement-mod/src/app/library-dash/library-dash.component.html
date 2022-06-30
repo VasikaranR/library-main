@@ -30,7 +30,7 @@
         <td>
         <!-- <button (click)="edit(user.id)" class="btn btn-warning">Edit</button>&nbsp; -->
         <button class="btn btn-warning" [routerLink]="['/update-addbook',user._id]">Edit</button>&nbsp;
-        <button class="btn btn-danger">Delete</button>&nbsp;
+        <button class="btn btn-danger" (click)="delete(user._id)">Delete</button>&nbsp;
       </td>
       </ng-template>
         

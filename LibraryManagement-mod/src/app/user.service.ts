@@ -83,7 +83,9 @@ role:string=''
 postUser(date:User){
   return this.http.post(this.baseUrl,date)
 }
-
+getUserId(_id:string){
+  return this.http.get<any>(this.baseUrl1+`/${_id}`);
+}
 postAdmin(formvalid:User){
   console.log("post  admin kula");
 
@@ -93,6 +95,9 @@ postAdmin(formvalid:User){
 putUser(formvalid:User,_id:string){
   console.log("put user kula");
   
-  return this.http.put(this.baseUrl+`/${_id}`,formvalid)
+  return this.http.put(this.baseUrl1+`/${_id}`,formvalid)
+}
+deleteUserId(_id: string) {
+  return this.http.delete(this.baseUrl1 + `/${_id}`);
 }
 }
