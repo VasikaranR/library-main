@@ -2,10 +2,11 @@ const express= require('express');
 var router=express.Router();
 
 var ObjectId=require('mongoose').Types.ObjectId;
+var {isAuthenticatedUser}=require('../middleware/auth');
 
 var{Add}=require('../models/add');
 
-router.get('/',(req,res)=>{
+router.get('/',isAuthenticatedUser,(req,res)=>{
     Add.find((err,docs)=>{
         if(!err){res.send(docs);}
         else{console.log('error in retriving : '+JSON.stringify(err,undefined,2));}
@@ -13,8 +14,8 @@ router.get('/',(req,res)=>{
 });
 
 
-router.post('/',(req,res)=>{
-    // console.log(res.body.bookId);
+router.post('/',isAuthenticatedUser,(req,res)=>{
+    
     var add = new Add({
         bookId:req.body.bookId,
         bookname:req.body.bookname,
@@ -36,7 +37,7 @@ router.post('/',(req,res)=>{
 
 });
 
-router.get( '/:id',(req,res)=>{
+router.get('/:id',(req,res)=>{
     if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id `);
     Add.findById(req.params.id,(err,doc)=>{
@@ -46,7 +47,7 @@ router.get( '/:id',(req,res)=>{
 });
 
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',isAuthenticatedUser,(req,res)=>{
     if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id :`);
     var add={
@@ -63,7 +64,7 @@ router.put('/:id',(req,res)=>{
 });
 
 
-router.delete('/:id' ,(req,res)=>{
+router.delete('/:id' ,isAuthenticatedUser,(req,res)=>{
     if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with the given id : $(req.params.id)`);
 

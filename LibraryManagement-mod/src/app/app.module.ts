@@ -11,7 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { BuyComponent } from './buy/buy.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { HeaderComponent } from './header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginDataService } from './login-data.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule ,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LoginDataService,AuthGuard,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

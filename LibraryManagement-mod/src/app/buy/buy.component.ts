@@ -15,11 +15,10 @@ export class BuyComponent implements OnInit {
   booknameValue:string='';
   bookCategoryValue:string='';
   bookAuthorValue:string='';
+  id1:string = '';
+  getMenuId:any;
+ 
 
-  
-  getDate(){
-    
-  }
   list:User={
     _id:'',
     bookId:0,
@@ -27,6 +26,7 @@ export class BuyComponent implements OnInit {
     category:'',
     author:''
   }
+
   constructor(private router:Router,private route: ActivatedRoute,private userService: UserService) { }
 
   id: number = 0;
@@ -34,28 +34,24 @@ export class BuyComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateValidate();
-    // this.route.params.subscribe(params => {
-    //   this.id = params['id'];
-    //   if (this.id != null) {
-    //     this.list.id=(params['id']);
-    //     const data = this.userService.getUsersByID(this.id);
-    //     if (data) {
-    //       this.list=(data);
-    //     }
-    //   }
-    // });
-
-    // console.log("id: "+this.id);
-    // this.booknameValue=this.list.bookname;
-    // this.bookAuthorValue=this.list.author;
-    // this.bookCategoryValue=this.list.category;
-    // console.log("book name : "+this.booknameValue);
+    this.getMenuId= this.route.snapshot.paramMap.get('id');
+  
+    
+    this.userService.getUserId(this.getMenuId).subscribe(
+      (res:any)=>this.lendData(res),
+      (err:any)=>console.log(err)
+    )
     
   }
+  lendData(res  : User){
+    this.list = res
+    
+  }
+  
   submit(date:NgForm){
 
     this.userService.postUser(date.value).subscribe((data)=>{
-      console.log(data);
+     
     })
     alert('Your Response has been submitted successfully!!!!!!!!')
     this.router.navigate(['/dashboard']);
@@ -74,7 +70,7 @@ export class BuyComponent implements OnInit {
     }
     var year =date.getFullYear();
     this.minDate= year+"-"+month+"-"+toDate;
-    console.log(this.minDate);
+    
  }
     
 

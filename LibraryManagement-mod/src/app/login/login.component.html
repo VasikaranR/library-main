@@ -12,18 +12,7 @@
           [class.is-invalid]="password.invalid && password.touched"  name="password" [(ngModel)]="password1" >
           <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</small>
           <br><br>
-<!-- 
-          <label>Role</label>
-          <input type="text" #role="ngModel" pattern="user|admin" class="form-control" required
-          [class.is-invalid]="role.invalid && role.touched"  name="role" [(ngModel)]="roleValue" >
-          <small class="text-danger" [class.d-none]="role.valid || role.untouched">Role is required</small>
-          <br><br> -->
-<!-- 
-           <select [(ngModel)]="role" name="role" >  
-            <option hidden>Choose role</option>  
-            <option *ngFor="let domain of role">{{domain}}</option>  
-        </select> 
-        {{role}} -->
+
         
         <label for="role" >Select Role</label>
         <select name="role" id="role"  [(ngModel)]="roleValue" value="rolevalue" (click)="rolefunction(roleValue)">

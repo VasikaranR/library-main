@@ -8,7 +8,7 @@
     </div>
     <div class="date">
         <label>Date</label>
-        <!-- <input type="date" min="{{minDate}}" required> -->
+    
          <input   type="date" #date="ngModel" min="{{minDate}}" class="form-control" [class.is-invalid]="date.invalid && date.touched" name="date" [(ngModel)]="date1" required>
         <small  class="text-danger" [class.d-none]="date.valid || date.untouched">Date is required</small> 
         <small class="text-danger" *ngIf="dateValidate()">Invalid date</small>   

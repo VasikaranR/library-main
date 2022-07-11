@@ -1,6 +1,6 @@
 const mongoose3= require('mongoose');
 
-var Add=mongoose3.model('Add',{
+var Add=mongoose3.model('Admin',{
 
       bookId:{
         type:String

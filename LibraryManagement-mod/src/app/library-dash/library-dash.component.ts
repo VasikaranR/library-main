@@ -13,22 +13,15 @@ import { UserService } from '../user.service';
 export class LibraryDashComponent implements OnInit {
   userList: User[] = [];
   roleName:string=''
-  // id:number=0;
-  // formvalid: FormGroup;
+
 
   constructor(private router:Router,private route: ActivatedRoute,private userService: UserService,private loginDataService:LoginDataService,private fb:FormBuilder) 
   { 
-    // this.formvalid = this.fb.group({
-    //   bookname: ['', [Validators.required]],
-    //   author: ['', [Validators.required]],
-    //   category:['',[Validators.required]],
-    //   bookId: ['', [Validators.required]],
-    //   id:[0,[Validators.required]]
-    // });
+    
   }
 
   ngOnInit(): void {
-    // this.userList = this.userService.getUsers();
+    
     this.userService.getUsers().subscribe((res)=>{
       this.userList=res as User[];
     })
@@ -39,52 +32,37 @@ export class LibraryDashComponent implements OnInit {
   table(){
     this.router.navigate(['/user']);
   }
-  view(){
+  
 
-  }
-  // lend(){
-  //   this.router.navigate(['/buy']);
-  // }
   add(){
     
     this.router.navigate(['/addbook']);
 
   }
   logout(){
+    localStorage.removeItem('token')
     this.router.navigate(['/user']);
   }
-  // edit(id:number){
-  //   this.route.params.subscribe(params => {
-  //     this.id = params['id'];
-  //     if (this.id != null) {
-  //       this.formvalid.get('Id')?.setValue(params['id']);
-  //       const data = this.userService.getUsersByID(this.id);
-  //       if (data) {
-  //         this.formvalid.setValue(data);
-  //       }
-  //     }
-  //   });
-
-  // }
-  // deleteBook(id:number){
-    // console.warn("remove id :"+id);
-    // if (confirm("Are you sure would you like to delete the details?") == true) {
-    //   this.userService.removeUser(id);
-    //   this.userList = this.userService.getUsers();
-    // } 
-// }
-
+  
 delete(_id:string){
   if (confirm('Are you sure to delete this record ?') == true) {
   this.userService.deleteUserId(_id).subscribe((res) => {
-    console.log(res);
+   
     
   });
   this.userService.getUsers().subscribe((res)=>{
     this.userList=res as User[];
-    console.log(JSON.stringify(res));
+    
   });
 }
+
+
 }
+doUpdate(_id:string){
+  
+  this.userService.setId = _id
+}
+
+
   }
 

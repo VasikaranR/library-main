@@ -1,18 +1,19 @@
 const express = require('express');
 var router = express.Router();
+var {isAuthenticatedUser}=require('../middleware/auth');
 
 var ObjectId=require('mongoose').Types.ObjectId;
 
 var{Lend}=require('../models/lend');
 
-router.get('/',(req,res)=>{
+router.get('/',isAuthenticatedUser,(req,res)=>{
     Lend.find((err,docs)=>{
         if(!err){res.send(docs);}
         else{console.log('error in retriving : '+JSON.stringify(err,undefined,2));}
     });
 });
 
-router.post('/',(req,res)=>{
+router.post('/',isAuthenticatedUser,(req,res)=>{
     var lend = new Lend({
         username:req.body.username,
         date:req.body.date,
@@ -34,7 +35,7 @@ router.post('/',(req,res)=>{
 });
 
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',isAuthenticatedUser,(req,res)=>{
 
     if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`no record :${req.params.id}`);

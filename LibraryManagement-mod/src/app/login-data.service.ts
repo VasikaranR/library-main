@@ -9,6 +9,7 @@ export class LoginDataService {
   data: string='';
   name:string='';
   password:string='';
+  token:String='';
 
   readonly baseURL="http://localhost:3000/books";
 
@@ -23,13 +24,24 @@ export class LoginDataService {
     this.role=this.data;
   }
 
-  getDetails(name:string,password:string,role:string){
+  getDetails(name:string,password:string,role:string,token:String){
     this.name=name;
     this.password=password;
     this.role=role;
+    this.token=token;
     console.log("name :"+this.name);
+   
+
+    
     
     return this.http.get(this.baseURL +`/${name}` + `/${password}` +`/${role}`);
+  }
+  getToken(){
+      return localStorage.getItem('token')
+    }
+
+  loggedIn(){
+    return  !!localStorage.getItem('token')
   }
 }
 
